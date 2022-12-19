@@ -15,6 +15,10 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import pymysql
+
+pymysql.install_as_MySQLdb()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -104,6 +108,27 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'Task',
+#         'USER': 'root',
+#         'PASSWORD': 'Thaiebu@786',
+#         'HOST':'localhost',
+#         'PORT':'3306',
+#     }
+# }
+
+CHANNEL_LAYERS = {
+        'default' : {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG' : {
+                "hosts" : [('redis', 6379)], # You are supposed to use service name and not localhost
+                },
+            },
+        }
 
 
 # Password validation
